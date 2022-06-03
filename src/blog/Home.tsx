@@ -80,7 +80,9 @@ const Home = (props: any) => {
                     <div className="space-y-6">
                       <div>
                         <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                          <a className="text-gray-900 dark:text-gray-100" href="/blog/new-features-in-v1">{ d.title }</a>
+                          <Link className="text-gray-900 dark:text-gray-100" to={{
+                        pathname: `/blog/${d.slug}`
+                      }}>{ d.title }</Link>
                         </h2>
                         <div className="flex flex-wrap">
                           {d.tags &&
