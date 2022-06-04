@@ -6,6 +6,8 @@ import Blog from './blog/Blog';
 import Tags from './blog/Tags';
 import Projects from './blog/Projects';
 import About from './blog/About';
+import SinglePost from './blog/SinglePost';
+import SingleTags from './blog/SingleTags';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import reportWebVitals from './reportWebVitals';
 
@@ -19,7 +21,9 @@ root.render(
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/blog" element={<Blog />}/>
+        <Route path="/blog/:slug" element={<SinglePost />}/>
         <Route path="/tags" element={<Tags />}/>
+        <Route path="/tags/:tag" element={<SingleTags />}/>
         <Route path="/projects" element={<Projects />}/>
         <Route path="/about" element={<About />}/>
       </Routes>

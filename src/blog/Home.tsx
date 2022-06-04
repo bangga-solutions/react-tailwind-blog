@@ -21,21 +21,13 @@ const Home = (props: any) => {
   const [error, setError] = useState(null);
 
   const formatDate = (date: string) => {
-    var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
-
-    if (month.length < 2) 
-        month = '0' + month;
-    if (day.length < 2) 
-        day = '0' + day;
-
-    return [day, month, year].join('-');
+    var d = new Date(date)
+    
+    return d.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
   }
-
+  
   useEffect(() => {
-    fetch(`https://api.kontenbase.com/query/api/v1/09e0e71c-7f74-438c-8f7f-6cdc565a336a/Posts?$lookup[0]=tags&$lookup[1]=categories&$select[0]=title&$select[1]=content&$select[2]=status&$select[3]=created_at&$select[4]=photos&$select[5]=slug&$select[6]=desc`)
+    fetch(`https://api.kontenbase.com/query/api/v1/09e0e71c-7f74-438c-8f7f-6cdc565a336a/Posts?$lookup[0]=tags&$lookup[1]=categories&$select[0]=title&$select[1]=content&$select[2]=status&$select[3]=created_at&$select[4]=photos&$select[5]=slug&$select[6]=desc&$sort[created_at]=-1`)
     .then((response) => {
       if (!response.ok) {
         throw new Error(
@@ -106,6 +98,9 @@ const Home = (props: any) => {
             </li>
           ))}
       </ul>
+    </div>
+    <div className="flex justify-end text-base font-medium leading-6">
+      <Link className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400" aria-label="all posts" to="/blog">All Posts →</Link>
     </div>
   </Main>
 }
