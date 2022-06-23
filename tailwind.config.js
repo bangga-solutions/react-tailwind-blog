@@ -4,6 +4,7 @@ const colors = require('tailwindcss/colors')
 module.exports = {
   experimental: {
     optimizeUniversalDefaults: true,
+    darkModeVariant: true,
   },
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",

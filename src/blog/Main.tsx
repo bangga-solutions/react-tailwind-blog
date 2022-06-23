@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import Page from "./Page"
+import ThemeSwitch from "./ThemeSwitch"
 import { Link } from "react-router-dom";
 
 const Main = (props: any) => {
@@ -15,7 +16,7 @@ const Main = (props: any) => {
         <Link aria-label="Gugus Widiandito's Blog" to="/">
           <div className="flex items-center justify-between">
             <div className="mr-3">
-              <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="344.564 330.278 111.737 91.218" width="53.87" height="43.61">
+              <svg xmlns="  g" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="344.564 330.278 111.737 91.218" width="53.87" height="43.61">
                 <defs>
                   <linearGradient id="logo_svg__b" gradientUnits="userSpaceOnUse" x1="420.97" y1="331.28" x2="420.97" y2="418.5">
                     <stop style={{ stopColor:'#06b6d4', stopOpacity:'1' }} offset="0%"></stop>
@@ -38,16 +39,13 @@ const Main = (props: any) => {
       </div>
       <div className="flex items-center text-base leading-5">
         <div className="hidden sm:block">
+          <a className="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4" href="mailto:guguswidiandito@gmail.com" target="blank">Hire me!</a>
           <Link className="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4" to="/blog">Blog</Link>
           <Link className="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4" to="/tags">Tag</Link>
           <Link className="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4" to="/projects">Projects</Link>
           <Link className="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4" to="/about">About</Link>
         </div>
-        <button aria-label="Toggle Dark Mode" type="button" className="ml-1 mr-1 h-8 w-8 rounded p-1 sm:ml-4">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="text-gray-900 dark:text-gray-100">
-            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-          </svg>
-        </button>
+        <ThemeSwitch />
         <div className="sm:hidden">
           <button type="button" className="ml-1 mr-1 h-8 w-8 rounded py-1" aria-label="Toggle Menu">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="text-gray-900 dark:text-gray-100">
@@ -63,6 +61,9 @@ const Main = (props: any) => {
               </button>
             </div>
             <nav className="fixed mt-8 h-full">
+              <div className="px-12 py-4">
+                <a className="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100" href="mailto:guguswidiandito@gmail.com" target="blank">Hire me!</a>
+              </div>
               <div className="px-12 py-4">
                 <Link className="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100" to="/blog">Blog</Link>
               </div>

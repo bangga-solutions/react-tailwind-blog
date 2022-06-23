@@ -116,7 +116,7 @@ const SinglePost = (props: any) => {
                     </div>
                   </div>
                   <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
-                    <div>
+                    {/* <div>
                       <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">Previous Article</h2>
                       <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
                         <a href="/blog/github-markdown-guide">Markdown Guide</a>
@@ -127,7 +127,7 @@ const SinglePost = (props: any) => {
                       <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
                         <a href="/blog/deriving-ols-estimator">Deriving the OLS Estimator</a>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div className="pt-4 xl:pt-8">
