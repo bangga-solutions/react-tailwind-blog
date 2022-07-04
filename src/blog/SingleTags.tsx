@@ -24,14 +24,14 @@ const Blog = (props: any) => {
     let d = new Date(date)
     return d.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
   }
-  const filterByTag = (tag: string, posts: Array<any>) => {
+  const filterByTag = (tag: string, val: string, posts: Array<any>) => {
     let filteredPosts = posts.filter((item) => {
-      return item.tags.some((t: { name: string; }) => t.name===tag);
+      return val ? item.tags.some((t: { name: string; }) => t.name===tag) && item.title.toLocaleLowerCase().includes(val.toLocaleLowerCase()) : item.tags.some((t: { name: string; }) => t.name===tag)
     })
     return filteredPosts
   }
 
-  const getPostsByTag = () => {
+  const getPostsByTag = (val: string) => {
     const tag: any = params.tag
     fetch(`https://api.kontenbase.com/query/api/v1/09e0e71c-7f74-438c-8f7f-6cdc565a336a/Posts?$lookup[0]=tags&$lookup[1]=categories&$select[0]=title&$select[1]=content&$select[2]=status&$select[3]=created_at&$select[4]=photos&$select[5]=slug&$select[6]=desc&$sort[created_at]=-1`)
     .then((response) => {
@@ -43,13 +43,13 @@ const Blog = (props: any) => {
       return response.json();
     })
     .then((actualData) => {
-      const filtered:any = filterByTag(tag, actualData)
+      const filtered:any = filterByTag(tag, val, actualData)
       setData(filtered);
     })
   }
 
   useEffect(() => {
-      getPostsByTag()
+      getPostsByTag('')
       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ history]);
 
@@ -57,7 +57,7 @@ const Blog = (props: any) => {
     <div className="space-y-2 pt-6 pb-8 md:space-y-5">
       <h1 className="text-3xl font-extrabold leading-9 tracking-tight capitalize text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">{params.tag}</h1>
       <div className="relative max-w-lg">
-        <input aria-label="Search articles" type="text" placeholder="Search articles" className="block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100" />
+        <input aria-label="Search articles" type="text" placeholder="Search articles" onChange={(e) => getPostsByTag(e.target.value)} className="block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100" />
         <svg className="absolute right-3 top-3 h-5 w-5 text-gray-400 dark:text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
         </svg>
@@ -105,15 +105,6 @@ const Blog = (props: any) => {
           </li>
         ))}
     </ul>
-    <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-      <nav className="flex justify-between">
-        <a href="/blog">
-          <button>Previous</button>
-        </a>
-        <span>2 of 2</span>
-        <button className="cursor-auto disabled:opacity-50">Next</button>
-      </nav>
-    </div>
   </Main>
 }
 

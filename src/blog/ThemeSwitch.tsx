@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react'
 const ThemeSwitch = () => {
   const [mounted, setMounted] = useState(true)
-  const [theme, setTheme] = useState('dark')
+  const tema = localStorage.theme === 'light' ? 'dark' : 'light';
+  const [theme, setTheme] = useState(tema)
   const toggleTheme = () => {
-    setMounted(true)
     setTheme((curr) => (curr === 'light' ? "dark" : "light"))
-    console.log(theme)
-    localStorage.theme = theme
     const root = window.document.documentElement
     if (root.classList.contains('dark')) {
       root.classList.remove('dark')
       root.classList.toggle('light')
+      localStorage.theme = 'light'
     } else {
       root.classList.remove('light')
       root.classList.toggle('dark')
+      localStorage.theme = 'dark'
     }
   }
 
@@ -25,12 +25,16 @@ const ThemeSwitch = () => {
       root.classList.remove('light')
       root.classList.toggle(localStorage.theme)
     } else {
-      localStorage.theme = 'light'
+      const isSystemDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+      const tema1 = isSystemDark ? 'dark' : 'light'
+      root.classList.remove('dark')
       root.classList.remove('light')
-      root.classList.toggle('light')
+      setTheme(tema1)
+      localStorage.theme = tema1
+      root.classList.toggle(tema1) 
     }
     setMounted(true)
-  }, [theme])
+  }, [])
 
   return (
     <button
