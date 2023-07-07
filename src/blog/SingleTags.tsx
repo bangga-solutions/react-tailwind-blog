@@ -33,7 +33,7 @@ const Blog = (props: any) => {
 
   const getPostsByTag = (val: string) => {
     const tag: any = params.tag
-    fetch(`https://api.kontenbase.com/query/api/v1/09e0e71c-7f74-438c-8f7f-6cdc565a336a/Posts?$lookup[0]=tags&$lookup[1]=categories&$select[0]=title&$select[1]=content&$select[2]=status&$select[3]=created_at&$select[4]=photos&$select[5]=slug&$select[6]=desc&$sort[created_at]=-1`)
+    fetch(`https://api.kontenbase.com/query/api/v1/09e0e71c-7f74-438c-8f7f-6cdc565a336a/Posts?$select[0]=desc&$select[1]=slug&$select[2]=photos&$select[3]=updated_at&$select[4]=created_at&$select[5]=status&$select[6]=content&$select[7]=title&$select[8]=_id&$select[9][user][$lookup]=*&$select[10][tags][$lookup]=*&$select[11][categories][$lookup]=*`)
     .then((response) => {
       if (!response.ok) {
         throw new Error(

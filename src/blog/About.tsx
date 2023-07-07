@@ -8,7 +8,7 @@ const About = (props: any) => {
       </div>
       <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
         <div className="prose max-w-none pt-8 pb-8 dark:prose-dark xl:col-span-2">
-          <p>Gugus Widiandito is a Web Developer with 4 years experience developing, maintaining enterprice web applications, design and developed over 27 advanced web applications from use cases and functional requirements, familiar with Laravel, Node, Vue, and React. and always willing to learn new tech stacks.</p>
+          <p>Gugus Widiandito is a Web Developer with 4 years experience developing, maintaining enterprise web applications, design and developed over 27 advanced web applications from use cases and functional requirements, familiar with Laravel, Node, Vue, and React. and always willing to learn new tech stacks.</p>
         </div>
       </div>
     </Main>

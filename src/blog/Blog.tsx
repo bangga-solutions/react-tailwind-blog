@@ -45,17 +45,17 @@ const Blog = (props: any) => {
   const getData = (val: string) => {
     const getParams = typeof params.page === 'undefined' ? 1 : Number(params.page);
     setValue(val)
-    const posts = fetch(`https://api.kontenbase.com/query/api/v1/09e0e71c-7f74-438c-8f7f-6cdc565a336a/Posts?$lookup[0]=tags&$lookup[1]=categories&$select[0]=title&$select[1]=content&$select[2]=status&$select[3]=created_at&$select[4]=photos&$select[5]=slug&$select[6]=desc&$sort[created_at]=-1`)
-    
+    const posts = fetch(`https://api.kontenbase.com/query/api/v1/09e0e71c-7f74-438c-8f7f-6cdc565a336a/Posts?$select[0]=desc&$select[1]=slug&$select[2]=photos&$select[3]=updated_at&$select[4]=created_at&$select[5]=status&$select[6]=content&$select[7]=title&$select[8]=_id&$select[9][user][$lookup]=*&$select[10][tags][$lookup]=*&$select[11][categories][$lookup]=*`)
+
     posts.then((res) => {
-      if(res.status === 200) {
+      if (res.status === 200) {
         return res.json()
       }
     }).then((response) => {
       const POSTS_PER_PAGE = 5
       const tp = Math.ceil(response.length / POSTS_PER_PAGE)
       const displayPosts = response.slice((getParams - 1) * POSTS_PER_PAGE, getParams * POSTS_PER_PAGE)
-      
+
       let filteredPosts = response.filter((item: { title: string; }) => {
         return item.title.toLocaleLowerCase().includes(val.toLocaleLowerCase())
       })
@@ -72,13 +72,13 @@ const Blog = (props: any) => {
     })
 
   }
-  
+
   useEffect(() => {
     getData('')
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [history, params.page]);
-  
+
 
   return (
     <Main title="Blog">
@@ -114,7 +114,7 @@ const Blog = (props: any) => {
                         <div className="flex flex-wrap">
                           {d.tags &&
                             d.tags.map(({ _id, name }) => (
-                              <Link key={_id} className="mr-3 text-sm font-medium uppercase text-primary-500 hover:text-primary-600 dark:hover:text-primary-400" to={{
+                              <Link key={`${_id}_${d._id}`} className="mr-3 text-sm font-medium uppercase text-primary-500 hover:text-primary-600 dark:hover:text-primary-400" to={{
                                 pathname: `/tags/${name}`
                               }}>{name}</Link>
                             ))}
@@ -134,7 +134,7 @@ const Blog = (props: any) => {
           ))}
       </ul>
       {pagination && pagination.tp > 1 && !value && (
-       <Paginate totalPages={pagination.tp} currentPage={pagination.cp}></Paginate>     
+        <Paginate totalPages={pagination.tp} currentPage={pagination.cp}></Paginate>
       )}
     </Main>
   )

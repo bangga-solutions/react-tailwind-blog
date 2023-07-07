@@ -13,7 +13,7 @@ const Tags = (props: any) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`https://api.kontenbase.com/query/api/v1/09e0e71c-7f74-438c-8f7f-6cdc565a336a/Tags?$lookup[_id]=*&$select[0]=name`)
+    fetch(`https://api.kontenbase.com/query/api/v1/09e0e71c-7f74-438c-8f7f-6cdc565a336a/Tags?$select[0]=name&$select[1]=_id&$select[2][Posts][$lookup]=*`)
     .then((response) => {
       if (!response.ok) {
         throw new Error(
