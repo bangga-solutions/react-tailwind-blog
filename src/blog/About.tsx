@@ -1,6 +1,10 @@
 import Main from "./Main"
 
-const About = (props: any) => {
+interface myState {
+
+}
+
+const About = (props: myState) => {
   return (
     <Main title="About">
       <div className="space-y-2 pt-6 pb-8 md:space-y-5">

@@ -7,10 +7,15 @@ import siteMetaData from '../data/siteMetaData'
 import MobileNav from './MobileNav'
 import SocialIcon from '../social-icons'
 
-const Main = (props: any) => {
+interface myProps {
+  title: any,
+  children: any
+}
+
+const Main = (props: myProps) => {
 
   useEffect(() => {
-    document.title = `${props.title} - GW's Blog`
+    document.title = `${props.title} - Gugus Widiandito's Blog`
     window.scrollTo(0, 0)
     document.body.style.overflow = 'auto'
   }, [props.title])
@@ -19,7 +24,7 @@ const Main = (props: any) => {
     <Page>
       <header className="flex items-center justify-between py-10">
         <div>
-          <Link aria-label="GW's Blog" to="/">
+          <Link aria-label="Gugus Widiandito's Blog" to="/">
             <div className="flex items-center justify-between">
               <div className="mr-3">
                 <svg xmlns="  g" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="344.564 330.278 111.737 91.218" width="53.87" height="43.61">
@@ -39,7 +44,7 @@ const Main = (props: any) => {
                   <use xlinkHref="#logo_svg__c" fill="url(#logo_svg__d)"></use>
                 </svg>
               </div>
-              <div className="hidden h-6 text-2xl font-semibold sm:block">GW's Blog</div>
+              <div className="hidden h-6 text-2xl font-semibold sm:block">Gugus Widiandito's Blog</div>
             </div>
           </Link>
         </div>
@@ -55,7 +60,7 @@ const Main = (props: any) => {
               </Link>
             ))}
           </div>
-          <ThemeSwitch />
+        <ThemeSwitch />
           <MobileNav />
         </div>
       </header>
@@ -69,7 +74,7 @@ const Main = (props: any) => {
 
           <div className="mb-3 flex space-x-4">
             <div className="mb-3 flex space-x-4">
-              <SocialIcon kind="mail" href={`mailto:${siteMetaData.email}`} size={6} />
+              {/* <SocialIcon kind="mail" href={`mailto:${siteMetaData.email}`} size={6} /> */}
               <SocialIcon kind="github" href={siteMetaData.github} size={6} />
               <SocialIcon kind="facebook" href={siteMetaData.facebook} size={6} />
               <SocialIcon kind="linkedin" href={siteMetaData.linkedin} size={6} />
@@ -77,15 +82,15 @@ const Main = (props: any) => {
             </div>
           </div>
           <div className="mb-2 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
-            <div>{siteMetaData.author}</div>
-            <div> • </div>
+            {/* <div>{siteMetaData.author}</div> */}
+            {/* <div> • </div> */}
             <div>© 2022</div>
             <div> • </div>
-            <a href="/">GW's Blog</a>
+            <a href="/">Gugus Widiandito's Blog</a>
           </div>
-          <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
-            <a target="_blank" rel="noopener noreferrer" href="https://github.com/guguswidiandito">{siteMetaData.author}</a>
-          </div>
+          {/* <div className="mb-8 text-sm text-gray-500 dark:text-gray-400"> */}
+            {/* <a target="_blank" rel="noopener noreferrer" href="https://github.com/guguswidiandito">{siteMetaData.author}</a> */}
+          {/* </div> */}
         </div>
       </footer>
     </Page>

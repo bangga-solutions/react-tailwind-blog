@@ -27,7 +27,7 @@ root.render(
         <Route path="/blog/:slug" element={<SinglePost />}/>
         <Route path="/tags" element={<Tags />}/>
         <Route path="/tags/:tag" element={<SingleTags />}/>
-        <Route path="/projects" element={<Projects />}/>
+        <Route path="/portfolio" element={<Projects />}/>
         <Route path="/about" element={<About />}/>
         <Route path="*" element={<NotFound/>}/>
       </Routes>

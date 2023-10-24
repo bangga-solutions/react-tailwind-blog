@@ -3,7 +3,11 @@ import { Link, useParams, useLocation } from "react-router-dom";
 
 import Main from "./Main"
 
-const Blog = (props: any) => {
+interface myProps {
+
+}
+
+const Blog = (props: myProps) => {
 
   type Posts = {
     categories: [];
